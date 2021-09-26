@@ -28,7 +28,7 @@ jobs:
 
       - name: Generate changelog
         run: |
-          poetry run tools/gen_changelog.py ${{ secrets.GITHUB_TOKEN }} v$CURRENT_VERSION $RELEASE_VERSION
+          poetry run tools/gen_changelog.py ${{ secrets.GITHUB_TOKEN }} V$CURRENT_VERSION $RELEASE_VERSION
 
       - name: Bump version
         run: poetry version $RELEASE_VERSION
@@ -37,7 +37,7 @@ jobs:
         uses: peter-evans/create-pull-request@v3
         with:
           commit-message: prepare release
-          title: Prepare for the next release of Maha (v$RELEASE_VERSION)
+          title: Prepare for the next release of Maha ($RELEASE_VERSION)
           branch: prepare-release
           base: main
 
@@ -48,6 +48,6 @@ jobs:
           body-template: |
             This is an auto-generated PR to prepare for the next release of Maha. The following changes were automatically made:
 
-            - Generated changelogs for release v$RELEASE_VERSION. See [changelog](https://maha--${{ steps.cpr.outputs.pull-request-number }}.org.readthedocs.build/en/${{ steps.cpr.outputs.pull-request-number }}/changelog/$RELEASE_VERSION-changelog.html)
-            - Bumped pypi version to v$RELEASE_VERSION.
+            - Generated changelogs for release $RELEASE_VERSION. See [changelog](https://maha--${{ steps.cpr.outputs.pull-request-number }}.org.readthedocs.build/en/${{ steps.cpr.outputs.pull-request-number }}/changelog/$RELEASE_VERSION-changelog.html)
+            - Bumped pypi version to $RELEASE_VERSION.
             - Updated the citation information.
