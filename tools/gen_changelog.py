@@ -169,7 +169,7 @@ def main(token, prior, tag, additional, outfile):
     lst_release, cur_release = prior, tag
 
     github = Github(token)
-    github_repo = github.get_repo("TRoboto/Maha")
+    github_repo = github.get_repo("saedx1/Maha")
 
     pr_nums = get_pr_nums(lst_release, cur_release)
     if additional:
